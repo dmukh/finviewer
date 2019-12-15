@@ -25,7 +25,7 @@ export class HomePage extends React.Component<object, HomeState> {
           label: 'File',
         }
       ],
-      collapsed: false
+      collapsed: true,
     };
   }
 
@@ -60,6 +60,11 @@ export class HomePage extends React.Component<object, HomeState> {
                 <span>robinhood</span>
                 <Link to='/robinhood' />
               </Menu.Item>
+              <Menu.Item key='new-account'>
+                <Icon type='plus-circle' />
+                <span>new account</span>
+                <Link to='/new-account' />
+              </Menu.Item>
             </Menu>
           </Sider>
           <Layout>
@@ -67,6 +72,7 @@ export class HomePage extends React.Component<object, HomeState> {
               <Route exact path='/' component={Line} />
               <Route path='/spartan' component={Line} />
               <Route path='/robinhood' component={Line} />
+              <Route path='/new-account' component={Line} />
             </Content>
           </Layout>
         </Layout>
