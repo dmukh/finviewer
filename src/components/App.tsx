@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { HomePage } from './HomePage';
+import { HomePage } from './ui/HomePage';
 
 export default class App extends React.Component {
   public render() {

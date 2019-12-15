@@ -9,7 +9,7 @@ import 'antd/dist/antd.css';
 
 import { TitleBar } from 'electron-react-titlebar';
 
-import Line from './charts/Line';
+import Account from './Account';
 
 interface HomeState {
   menuTemplate: any[];
@@ -69,10 +69,10 @@ export class HomePage extends React.Component<object, HomeState> {
           </Sider>
           <Layout>
             <Content style={{ margin: '0 16px' }}>
-              <Route exact path='/' component={Line} />
-              <Route path='/spartan' component={Line} />
-              <Route path='/robinhood' component={Line} />
-              <Route path='/new-account' component={Line} />
+              <Route exact path='/' component={Account} />
+              <Route path='/spartan' component={Account} />
+              <Route path='/robinhood' component={Account} />
+              <Route path='/new-account' component={Account} />
             </Content>
           </Layout>
         </Layout>
