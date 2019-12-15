@@ -209,6 +209,8 @@ export default class EditableTable extends React.Component {
           bordered
           dataSource={dataSource}
           columns={columns}
+          pagination={false}
+          size="small"
         />
 
       </div>
