@@ -7,13 +7,17 @@ import Line from '../viz/Line';
 import EditableTable  from '../viz/EditableTable';
 import '../viz/EditableTable.css';
 
+interface AccountState {
+  data: object;
+}
 
-export default class Account extends React.Component {
+export default class Account extends React.Component<AccountState> {
 
   showDeleteConfirm = () => {
     Modal.confirm({
       title: 'Are you sure you want to delete this account?',
-      content: 'This decision cannot be reversed and data will be lost.',
+      content: 'This button does not work as of now.',
+      //content: 'This decision cannot be reversed and data will be lost.',
       okText: 'Yes',
       okType: 'danger',
       cancelText: 'No',
@@ -23,18 +27,17 @@ export default class Account extends React.Component {
   } 
   
   public render() {
-    let data = require('../data/data.json');
     return (
       <div style={{ height: 400, }} >
+        <Line data={this.props.data} />
+        <EditableTable />
         <Button
           type='danger'
           onClick={this.showDeleteConfirm}
-          style={{ marginTop: 16, marginBottom: 16 }}
+          style={{ marginTop: 32, marginBottom: 16 }}
         >
           Delete Account
         </Button>
-        <Line data={data} />
-        <EditableTable />
       </div>
     )
   }

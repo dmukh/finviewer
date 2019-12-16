@@ -34,6 +34,7 @@ export class HomePage extends React.Component<object, HomeState> {
   };
 
   render() {
+    let data = require('../data/data.json');
     return (
       <Router>
         <Layout style={{ minHeight: '100vh' }}>
@@ -57,7 +58,7 @@ export class HomePage extends React.Component<object, HomeState> {
               </Menu.Item>
               <Menu.Item key='robinhood'>
                 <Icon type='stock' />
-                <span>robinhood</span>
+                <span>spartan trading</span>
                 <Link to='/robinhood' />
               </Menu.Item>
               <Menu.Item key='new-account'>
@@ -69,10 +70,22 @@ export class HomePage extends React.Component<object, HomeState> {
           </Sider>
           <Layout>
             <Content style={{ margin: '0 16px' }}>
-              <Route exact path='/' component={Account} />
-              <Route path='/spartan' component={Account} />
-              <Route path='/robinhood' component={Account} />
-              <Route path='/new-account' component={Account} />
+              <Route 
+                exact path='/'
+                render={(props) => <Account {...props} data={data} />}       
+              />
+              <Route 
+                exact path='/spartan'
+                render={(props) => <Account {...props} data={data} />}       
+              />
+              <Route 
+                exact path='/robinhood'
+                render={(props) => <Account {...props} data={data} />}       
+              />
+              <Route 
+                path='/new-account'
+                render={(props) => <Account {...props} data={data} />}
+              />
             </Content>
           </Layout>
         </Layout>
