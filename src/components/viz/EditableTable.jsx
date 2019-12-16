@@ -95,24 +95,29 @@ export default class EditableTable extends React.Component {
     this.columns = [
       {
         title: 'Date',
-        dataIndex: 'name',
+        dataIndex: 'date',
         width: '30%',
         editable: true,
       },
       {
-        title: 'Balance',
-        dataIndex: 'age',
+        title: 'Total',
+        dataIndex: 'total',
         editable: true,
       },
       {
-        title: 'Net P/L',
-        dataIndex: 'address',
+        title: 'Profit/Loss',
+        dataIndex: 'profit-loss',
         editable: true,
       },
       {
-        title: 'Delete Row',
+        title: 'Net Profit',
+        dataIndex: 'net-profit',
+        editable: true,
+      },
+      {
+        title: 'Delete',
         dataIndex: 'delete',
-        width: '10%',
+        width: '7%',
         render: (text, record) =>
           this.state.dataSource.length >= 1 ? (
             <Popconfirm title="Sure to delete?" onConfirm={() => this.handleDelete(record.key)}>

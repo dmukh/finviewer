@@ -2,12 +2,10 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
-import { Layout, Menu, Icon } from 'antd';
+import { Layout, Menu, Icon, Empty } from 'antd';
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 import 'antd/dist/antd.css';
-
-import { TitleBar } from 'electron-react-titlebar';
 
 import Account from './Account';
 
@@ -15,6 +13,8 @@ interface HomeState {
   menuTemplate: any[];
   collapsed: boolean;
 }
+
+//{this.state.isShow ? <Greeting greeting={greeting} /> : null}
 
 export class HomePage extends React.Component<object, HomeState> {
   constructor(props: object) {
