@@ -12,9 +12,8 @@ import Account from './Account';
 interface HomeState {
   menuTemplate: any[];
   collapsed: boolean;
+  firstRender: boolean;
 }
-
-//{this.state.isShow ? <Greeting greeting={greeting} /> : null}
 
 export class HomePage extends React.Component<object, HomeState> {
   constructor(props: object) {
@@ -26,11 +25,16 @@ export class HomePage extends React.Component<object, HomeState> {
         }
       ],
       collapsed: true,
+      firstRender: true,
     };
   }
 
   onCollapse = collapsed => {
     this.setState({ collapsed });
+  };
+
+  setFirstRender = () => {
+    this.setState({ firstRender: false }); 
   };
 
   render() {
@@ -51,17 +55,17 @@ export class HomePage extends React.Component<object, HomeState> {
                 <span>home</span>
                 <Link to='/' />
               </Menu.Item>
-              <Menu.Item key='spartan'>
+              <Menu.Item key='spartan' onClick={this.setFirstRender}>
                 <Icon type='fund' />
                 <span>spartan trading</span>
                 <Link to='/spartan' />
               </Menu.Item>
-              <Menu.Item key='robinhood'>
+              <Menu.Item key='robinhood' onClick={this.setFirstRender}>
                 <Icon type='stock' />
                 <span>spartan trading</span>
                 <Link to='/robinhood' />
               </Menu.Item>
-              <Menu.Item key='new-account'>
+              <Menu.Item key='new-account' onClick={this.setFirstRender}>
                 <Icon type='plus-circle' />
                 <span>new account</span>
                 <Link to='/new-account' />
@@ -69,6 +73,7 @@ export class HomePage extends React.Component<object, HomeState> {
             </Menu>
           </Sider>
           <Layout>
+            {this.state.firstRender ? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} /> : null}
             <Content style={{ margin: '0 16px' }}>
               <Route 
                 exact path='/'
