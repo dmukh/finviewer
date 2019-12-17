@@ -8,6 +8,7 @@ const { SubMenu } = Menu;
 import 'antd/dist/antd.css';
 
 import Account from './Account';
+import { NewAccount } from './NewAccount';
 
 interface HomeState {
   menuTemplate: any[];
@@ -80,16 +81,16 @@ export class HomePage extends React.Component<object, HomeState> {
                 render={(props) => <Account {...props} data={data} />}       
               />
               <Route 
-                exact path='/spartan'
+                path='/spartan'
                 render={(props) => <Account {...props} data={data} />}       
               />
               <Route 
-                exact path='/robinhood'
+                path='/robinhood'
                 render={(props) => <Account {...props} data={data} />}       
               />
-              <Route 
+              <Route
                 path='/new-account'
-                render={(props) => <Account {...props} data={data} />}
+                render={(props) => <NewAccount {...props} dataPath="data-path" />}
               />
             </Content>
           </Layout>
