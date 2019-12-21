@@ -34,8 +34,65 @@ export class HomePage extends React.Component<object, HomeState> {
     this.setState({ collapsed });
   };
 
-  setFirstRender = () => {
+  setFirstRenderFalse = () => {
     this.setState({ firstRender: false }); 
+  };
+
+  getSiderMenu = () => {
+    return(
+      <Sider
+        collapsible
+        collapsed = {this.state.collapsed}
+        onCollapse={this.onCollapse}
+        theme="dark"
+        style={{ overflowX: 'auto' }}
+        >
+        <Menu theme="dark" defaultOpenKeys={['home']} mode="inline">
+          <Menu.Item key='home'>
+            <Icon type='home' />
+            <span>home</span>
+            <Link to='/' />
+          </Menu.Item>
+          <Menu.Item key='spartan' onClick={this.setFirstRenderFalse}>
+            <Icon type='fund' />
+            <span>spartan trading</span>
+            <Link to='/spartan' />
+          </Menu.Item>
+          <Menu.Item key='robinhood' onClick={this.setFirstRenderFalse}>
+            <Icon type='stock' />
+            <span>spartan trading</span>
+            <Link to='/robinhood' />
+          </Menu.Item>
+          <Menu.Item key='new-account' onClick={this.setFirstRenderFalse}>
+            <Icon type='plus-circle' />
+            <span>new account</span>
+            <Link to='/new-account' />
+          </Menu.Item>
+        </Menu>
+      </Sider>
+    );
+  };
+
+  getRoutes = () => {
+    let data = require('../data/data.json');
+    return([
+      <Route 
+        exact path='/'
+        render={(props) => <Account {...props} data={data} />}       
+      />,
+      <Route 
+        path='/spartan'
+        render={(props) => <Account {...props} data={data} />}       
+      />,
+      <Route 
+        path='/robinhood'
+        render={(props) => <Account {...props} data={data} />}       
+      />,
+      <Route
+        path='/new-account'
+        render={(props) => <NewAccount {...props} dataPath="data-path" />}
+      />
+    ]);
   };
 
   render() {
@@ -43,55 +100,11 @@ export class HomePage extends React.Component<object, HomeState> {
     return (
       <Router>
         <Layout style={{ minHeight: '100vh' }}>
-          <Sider
-            collapsible
-            collapsed = {this.state.collapsed}
-            onCollapse={this.onCollapse}
-            theme="dark"
-            style={{ overflowX: 'auto' }}
-            >
-            <Menu theme="dark" defaultOpenKeys={['home']} mode="inline">
-              <Menu.Item key='home'>
-                <Icon type='home' />
-                <span>home</span>
-                <Link to='/' />
-              </Menu.Item>
-              <Menu.Item key='spartan' onClick={this.setFirstRender}>
-                <Icon type='fund' />
-                <span>spartan trading</span>
-                <Link to='/spartan' />
-              </Menu.Item>
-              <Menu.Item key='robinhood' onClick={this.setFirstRender}>
-                <Icon type='stock' />
-                <span>spartan trading</span>
-                <Link to='/robinhood' />
-              </Menu.Item>
-              <Menu.Item key='new-account' onClick={this.setFirstRender}>
-                <Icon type='plus-circle' />
-                <span>new account</span>
-                <Link to='/new-account' />
-              </Menu.Item>
-            </Menu>
-          </Sider>
+          { this.getSiderMenu() }
           <Layout>
             {this.state.firstRender ? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} /> : null}
             <Content style={{ margin: '0 16px' }}>
-              <Route 
-                exact path='/'
-                render={(props) => <Account {...props} data={data} />}       
-              />
-              <Route 
-                path='/spartan'
-                render={(props) => <Account {...props} data={data} />}       
-              />
-              <Route 
-                path='/robinhood'
-                render={(props) => <Account {...props} data={data} />}       
-              />
-              <Route
-                path='/new-account'
-                render={(props) => <NewAccount {...props} dataPath="data-path" />}
-              />
+              { this.getRoutes() }
             </Content>
           </Layout>
         </Layout>
