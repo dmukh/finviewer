@@ -94,7 +94,7 @@ export class HomePage extends React.Component<HomeProps, HomeState> {
     let routes = [
       <Route
         exact path='/'
-        render={(props) => <Account {...props} data={data} />}
+        render={(props) => <Account {...props} data={data[0]} />}
       />
     ];
 
@@ -102,7 +102,7 @@ export class HomePage extends React.Component<HomeProps, HomeState> {
       routes.push(
         <Route
           path={ this.props.workspace[i]['link'] }
-          render={(props) => <Account {...props} data={data} />}
+          render={(props) => <Account {...props} data={data[0]} />}
         />
       );
     };
