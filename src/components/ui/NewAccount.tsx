@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { Form, Input, Radio, Button } from 'antd';
+import { Form, Input, Radio, Button, Modal } from 'antd';
 import { FormComponentProps } from 'antd/lib/form';
 
 interface NewAccountProps extends FormComponentProps {
   dataPath: string;
 }
 
-class NewAccountForm extends React.Component<NewAccountProps, any> {
+class NewAccount extends React.Component<NewAccountProps, any> {
 
   handleSubmit = e => {
     e.preventDefault();
@@ -33,7 +33,6 @@ class NewAccountForm extends React.Component<NewAccountProps, any> {
     };
     return (
       <Form {...formItemLayout} onSubmit={this.handleSubmit}>
-
         <Form.Item label='Account Name'>
           {getFieldDecorator('Account Name', {
             rules: [{required: true}]
@@ -62,8 +61,6 @@ class NewAccountForm extends React.Component<NewAccountProps, any> {
 
 }
 
-export const NewAccount = Form.create<NewAccountProps>({
-  name: 'validate_other'
-})(NewAccountForm);
+export default Form.create<NewAccountProps>({ name: 'validate_other' })(NewAccount);
 
 

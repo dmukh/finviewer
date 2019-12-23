@@ -8,7 +8,11 @@ const { SubMenu } = Menu;
 import 'antd/dist/antd.css';
 
 import Account from './Account';
-import { NewAccount } from './NewAccount';
+import NewAccount from './NewAccount';
+
+interface HomeProps {
+  workspace: any[];
+}
 
 interface HomeState {
   menuTemplate: any[];
@@ -16,8 +20,8 @@ interface HomeState {
   firstRender: boolean;
 }
 
-export class HomePage extends React.Component<object, HomeState> {
-  constructor(props: object) {
+export class HomePage extends React.Component<HomeProps, HomeState> {
+  constructor(props) {
     super(props);
     this.state = {
       menuTemplate: [
@@ -38,7 +42,38 @@ export class HomePage extends React.Component<object, HomeState> {
     this.setState({ firstRender: false }); 
   };
 
+  getMenuEntries = () => {
+    let entries = [
+      <Menu.Item key='home' >
+        <Icon type='home' />
+        <span>home</span>
+        <Link to='/' />
+      </Menu.Item>
+    ];
+
+    for (let i = 0; i < this.props.workspace.length; ++i) {
+      entries.push(
+        <Menu.Item key={ this.props.workspace[i]['name'] } onClick={this.setFirstRenderFalse}>
+          <Icon type={ this.props.workspace[i]['icon'] } />
+          <span>{ this.props.workspace[i]['name'] }</span>
+          <Link to={ this.props.workspace[i]['link'] } />
+        </Menu.Item>
+      );
+    };
+
+    entries.push(
+      <Menu.Item key='new-account' onClick={this.setFirstRenderFalse}>
+        <Icon type='plus-circle' />
+        <span>new account</span>
+        <Link to='/new-account' />
+      </Menu.Item>
+    );
+
+    return(entries);
+  };
+
   getSiderMenu = () => {
+    let entries = this.getMenuEntries();
     return(
       <Sider
         collapsible
@@ -48,26 +83,7 @@ export class HomePage extends React.Component<object, HomeState> {
         style={{ overflowX: 'auto' }}
         >
         <Menu theme="dark" defaultOpenKeys={['home']} mode="inline">
-          <Menu.Item key='home'>
-            <Icon type='home' />
-            <span>home</span>
-            <Link to='/' />
-          </Menu.Item>
-          <Menu.Item key='spartan' onClick={this.setFirstRenderFalse}>
-            <Icon type='fund' />
-            <span>spartan trading</span>
-            <Link to='/spartan' />
-          </Menu.Item>
-          <Menu.Item key='robinhood' onClick={this.setFirstRenderFalse}>
-            <Icon type='stock' />
-            <span>spartan trading</span>
-            <Link to='/robinhood' />
-          </Menu.Item>
-          <Menu.Item key='new-account' onClick={this.setFirstRenderFalse}>
-            <Icon type='plus-circle' />
-            <span>new account</span>
-            <Link to='/new-account' />
-          </Menu.Item>
+          { this.getMenuEntries() }
         </Menu>
       </Sider>
     );
@@ -75,28 +91,33 @@ export class HomePage extends React.Component<object, HomeState> {
 
   getRoutes = () => {
     let data = require('../data/data.json');
-    return([
-      <Route 
+    let routes = [
+      <Route
         exact path='/'
-        render={(props) => <Account {...props} data={data} />}       
-      />,
-      <Route 
-        path='/spartan'
-        render={(props) => <Account {...props} data={data} />}       
-      />,
-      <Route 
-        path='/robinhood'
-        render={(props) => <Account {...props} data={data} />}       
-      />,
+        render={(props) => <Account {...props} data={data} />}
+      />
+    ];
+
+    for (let i = 0; i < this.props.workspace.length; ++i) {
+      routes.push(
+        <Route
+          path={ this.props.workspace[i]['link'] }
+          render={(props) => <Account {...props} data={data} />}
+        />
+      );
+    };
+
+    routes.push(
       <Route
         path='/new-account'
         render={(props) => <NewAccount {...props} dataPath="data-path" />}
       />
-    ]);
+    );
+
+    return(routes);
   };
 
   render() {
-    let data = require('../data/data.json');
     return (
       <Router>
         <Layout style={{ minHeight: '100vh' }}>
