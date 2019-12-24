@@ -27,10 +27,11 @@ export default class Account extends React.Component<AccountState> {
   } 
   
   public render() {
+    let table_data = require('../data/table_test.json');
     return (
       <div style={{ height: 400, }} >
         <Line data={this.props.data} />
-        <EditableTable />
+        <EditableTable dataSource={table_data} />
         <Button
           type='danger'
           onClick={this.showDeleteConfirm}
