@@ -1,28 +1,24 @@
-[
-  {
-    "id": "spartan",
-    "color": "hsl(229, 70%, 50%)",
-    "data": [
-      {
-        "x": "2019 Q1",
-        "y": 175
-      },
-      {
-        "x": "2019 Q2",
-        "y": 233
-      },
-      {
-        "x": "2019 Q3",
-        "y": 118
-      },
-      {
-        "x": "2019 Q4",
-        "y": 29
-      },
-      {
-        "x": "2020 Q1",
-        "y": 261
-      }
-    ]
-  }
-]
+{
+  "id": "spartan",
+  "color": "hsl(229, 70%, 50%)",
+  "data": [
+    {
+      "date": 1,
+      "total": 180,
+      "profit-loss": 10,
+      "net-profit": 1
+    },
+    {
+      "date": 2,
+      "total": 190,
+      "profit-loss": 20,
+      "net-profit": 2
+    },
+    {
+      "date": 3,
+      "total": 170,
+      "profit-loss": 20,
+      "net-profit": 2
+    }
+  ]
+}

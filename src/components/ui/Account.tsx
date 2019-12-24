@@ -25,13 +25,34 @@ export default class Account extends React.Component<AccountState> {
       onCancel() {},
     });
   } 
-  
+
+  formLineData = () => {
+    let line_data = [];
+    for (let i = 0; i < this.props.data['data'].length; ++i) {
+      line_data.push({
+        'x': this.props.data['data'][i]['date'],
+        'y': this.props.data['data'][i]['total']
+      });
+    }
+
+    let data = [{
+      'id': this.props.data['id'],
+      'color': this.props.data['color'],
+      'data': line_data
+    }];
+
+    return(data);
+  }
+
+  formTableData = () => {
+    return this.props.data['data'];
+  }
+
   public render() {
-    let table_data = require('../data/table_test.json');
     return (
       <div style={{ height: 400, }} >
-        <Line data={this.props.data} />
-        <EditableTable dataSource={table_data} />
+        <Line data={ this.formLineData() } />
+        <EditableTable dataSource={ this.formTableData() } />
         <Button
           type='danger'
           onClick={this.showDeleteConfirm}
