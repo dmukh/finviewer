@@ -1,6 +1,54 @@
 [
   {
+    "id": "combined",
+    "color": "hsl(229, 70%, 50%)",
+    "data": [
+      {
+        "date": 1,
+        "total": 180,
+        "profit-loss": 10,
+        "net-profit": 1
+      },
+      {
+        "date": 2,
+        "total": 190,
+        "profit-loss": 20,
+        "net-profit": 2
+      },
+      {
+        "date": 3,
+        "total": 170,
+        "profit-loss": 20,
+        "net-profit": 2
+      }
+    ]
+  },
+  {
     "id": "spartan",
+    "color": "hsl(229, 70%, 50%)",
+    "data": [
+      {
+        "date": 1,
+        "total": 100,
+        "profit-loss": 10,
+        "net-profit": 1
+      },
+      {
+        "date": 2,
+        "total": 110,
+        "profit-loss": 20,
+        "net-profit": 2
+      },
+      {
+        "date": 3,
+        "total": 70,
+        "profit-loss": 20,
+        "net-profit": 2
+      }
+    ]
+  },
+  {
+    "id": "robinhood",
     "color": "hsl(229, 70%, 50%)",
     "data": [
       {
