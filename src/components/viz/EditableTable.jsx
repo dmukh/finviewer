@@ -100,13 +100,13 @@ export default class EditableTable extends React.Component {
         editable: true,
       },
       {
-        title: 'Total',
-        dataIndex: 'total',
+        title: 'Change',
+        dataIndex: 'change',
         editable: true,
       },
       {
-        title: 'Profit/Loss',
-        dataIndex: 'profit-loss',
+        title: 'Balance',
+        dataIndex: 'balance',
         editable: true,
       },
       {
@@ -115,16 +115,21 @@ export default class EditableTable extends React.Component {
         editable: true,
       },
       {
-        title: 'Delete',
-        dataIndex: 'delete',
-        width: '7%',
-        render: (text, record) =>
-          this.state.dataSource.length >= 1 ? (
-            <Popconfirm title="Sure to delete?" onConfirm={() => this.handleDelete(record.key)}>
-              <Button type="danger">X</Button>
-            </Popconfirm>
-          ) : null,
+        title: 'Type',
+        dataIndex: 'type',
+        editable: true,
       },
+//      {
+//        title: 'Delete',
+//        dataIndex: 'delete',
+//        width: '7%',
+//        render: (text, record) =>
+//          this.state.dataSource.length >= 1 ? (
+//            <Popconfirm title="Sure to delete?" onConfirm={() => this.handleDelete(record.key)}>
+//              <Button type="danger">X</Button>
+//            </Popconfirm>
+//          ) : null,
+//      },
     ];
 
     this.state = {

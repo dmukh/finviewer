@@ -5,21 +5,24 @@
     "data": [
       {
         "date": 1,
-        "total": 180,
-        "profit-loss": 10,
-        "net-profit": 1
+        "balance": 180,
+        "change": 10,
+        "net-profit": 1,
+        "type": "Deposit"
       },
       {
         "date": 2,
-        "total": 190,
-        "profit-loss": 20,
-        "net-profit": 2
+        "balance": 190,
+        "change": 20,
+        "net-profit": 2,
+        "type": "Profit"
       },
       {
         "date": 3,
-        "total": 170,
-        "profit-loss": 20,
-        "net-profit": 2
+        "balance": 170,
+        "change": 20,
+        "net-profit": 2,
+        "type": "Profit"
       }
     ]
   },
@@ -28,22 +31,32 @@
     "color": "hsl(229, 70%, 50%)",
     "data": [
       {
-        "date": 1,
-        "total": 100,
-        "profit-loss": 10,
-        "net-profit": 1
+        "date": "11/2019",
+        "balance": 10,
+        "change": 10,
+        "net-profit": 0,
+        "type": "Deposit"
       },
       {
-        "date": 2,
-        "total": 110,
-        "profit-loss": 20,
-        "net-profit": 2
+        "date": "11/2019",
+        "balance": 138,
+        "change": 8,
+        "net-profit": 38,
+        "type": "Profit"
       },
       {
-        "date": 3,
-        "total": 70,
-        "profit-loss": 20,
-        "net-profit": 2
+        "date": "12/2019",
+        "balance": 25438,
+        "change": 15000,
+        "net-profit": 438,
+        "type": "Deposit"
+      },
+      {
+        "date": "12/2019",
+        "balance": 26040,
+        "change": 602,
+        "net-profit": 1040,
+        "type": "Profit"
       }
     ]
   },
@@ -53,21 +66,24 @@
     "data": [
       {
         "date": 1,
-        "total": 180,
-        "profit-loss": 10,
-        "net-profit": 1
+        "balance": 180,
+        "change": 10,
+        "net-profit": 1,
+        "type": "Profit"
       },
       {
         "date": 2,
-        "total": 190,
-        "profit-loss": 20,
-        "net-profit": 2
+        "balance": 190,
+        "change": 20,
+        "net-profit": 2,
+        "type": "Deposit"
       },
       {
         "date": 3,
-        "total": 170,
-        "profit-loss": 20,
-        "net-profit": 2
+        "balance": 170,
+        "change": 20,
+        "net-profit": 2,
+        "type": "Profit"
       }
     ]
   }

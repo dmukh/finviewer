@@ -61,13 +61,13 @@ export class HomePage extends React.Component<HomeProps, HomeState> {
       );
     };
 
-    entries.push(
-      <Menu.Item key='new-account' onClick={this.setFirstRenderFalse}>
-        <Icon type='plus-circle' />
-        <span>new account</span>
-        <Link to='/new-account' />
-      </Menu.Item>
-    );
+    //entries.push(
+    //  <Menu.Item key='new-account' onClick={this.setFirstRenderFalse}>
+    //    <Icon type='plus-circle' />
+    //    <span>new account</span>
+    //    <Link to='/new-account' />
+    //  </Menu.Item>
+    //);
 
     return(entries);
   };

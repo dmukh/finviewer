@@ -43,12 +43,50 @@ export default class Account extends React.Component<AccountProps, AccountState>
   }
 
   balanceData = () => {
+    let profit_data = [];
+    let capital_data = [];
+    let capital_value = 0;
+    for (let i = 0; i < this.props.data['data'].length; ++i) {
+      if (this.props.data['data'][i]['type'] === 'Profit') {
+        profit_data.push({
+          'x': this.props.data['data'][i]['date'],
+          'y': this.props.data['data'][i]['balance']
+        });
+      } else {
+        capital_value = capital_value + this.props.data['data'][i]['change'];
+        capital_data.push({
+          'x': this.props.data['data'][i]['date'],
+          'y': capital_value
+        });
+      }
+    }
+
+    let data = [
+      {
+        'id': 'balance',
+        'color': this.props.data['color'],
+        'data': profit_data
+      },
+      {
+        'id': 'capital',
+        'color': 'hsl(210, 70%, 50%)',
+        'data': capital_data
+      }
+    ];
+
+    this.setState({lineData: data});
+    return(data);
+  }
+
+  profitData = () => {
     let line_data = [];
     for (let i = 0; i < this.props.data['data'].length; ++i) {
-      line_data.push({
-        'x': this.props.data['data'][i]['date'],
-        'y': this.props.data['data'][i]['total']
-      });
+      if (this.props.data['data'][i]['type'] === 'Profit') {
+        line_data.push({
+          'x': this.props.data['data'][i]['date'],
+          'y': this.props.data['data'][i]['net-profit']
+        });
+      }
     }
 
     let data = [{
@@ -58,16 +96,22 @@ export default class Account extends React.Component<AccountProps, AccountState>
     }];
 
     this.setState({lineData: data});
-    return(data);
   }
 
   percentData = () => {
     let line_data = [];
+    let capital_value = 0;
+    let percent_value = 0;
     for (let i = 0; i < this.props.data['data'].length; ++i) {
-      line_data.push({
-        'y': this.props.data['data'][i]['date'],
-        'x': this.props.data['data'][i]['total']
-      });
+      if (this.props.data['data'][i]['type'] === 'Deposit') {
+        capital_value = capital_value + this.props.data['data'][i]['change'];
+      } else if (this.props.data['data'][i]['type'] === 'Profit') {
+        percent_value = parseFloat(this.props.data['data'][i]['net-profit'])/capital_value*100;
+        line_data.push({
+          'x': this.props.data['data'][i]['date'],
+          'y': percent_value
+        });
+      }
     }
 
     let data = [{
@@ -82,7 +126,9 @@ export default class Account extends React.Component<AccountProps, AccountState>
   handleChange = e => {
     if (e.target.value === 'balance') {
         this.balanceData();
-    } else {
+    } else if (e.target.value === 'profit') {
+        this.profitData();
+    } else if (e.target.value === 'percent') {
         this.percentData();
     }
   }
@@ -94,9 +140,10 @@ export default class Account extends React.Component<AccountProps, AccountState>
   public render() {
     return (
       <div style={{ height: 400, marginTop: 16 }} >
-        <Radio.Group defaultValue="a" size="small" onChange={this.handleChange} >
+        <Radio.Group defaultValue="balance" size="small" onChange={this.handleChange} >
           <Radio.Button value='balance'>Balance</Radio.Button>
-          <Radio.Button value='percent'>Percent</Radio.Button>
+          <Radio.Button value='profit'>Profit</Radio.Button>
+          <Radio.Button value='percent'>Percentage</Radio.Button>
         </Radio.Group>
         <Line data={ this.state.lineData } />
         <EditableTable dataSource={ this.state.tableData } />
