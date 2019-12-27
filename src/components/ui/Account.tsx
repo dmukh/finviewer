@@ -52,6 +52,10 @@ export default class Account extends React.Component<AccountProps, AccountState>
           'x': this.props.data['data'][i]['date'],
           'y': this.props.data['data'][i]['balance']
         });
+        capital_data.push({
+          'x': this.props.data['data'][i]['date'],
+          'y': capital_value
+        });
       } else {
         capital_value = capital_value + this.props.data['data'][i]['change'];
         capital_data.push({
@@ -106,7 +110,7 @@ export default class Account extends React.Component<AccountProps, AccountState>
       if (this.props.data['data'][i]['type'] === 'Deposit') {
         capital_value = capital_value + this.props.data['data'][i]['change'];
       } else if (this.props.data['data'][i]['type'] === 'Profit') {
-        percent_value = parseFloat(this.props.data['data'][i]['net-profit'])/capital_value*100;
+        percent_value = 100.0*this.props.data['data'][i]['net-profit']/capital_value;
         line_data.push({
           'x': this.props.data['data'][i]['date'],
           'y': percent_value

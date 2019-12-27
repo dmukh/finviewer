@@ -23,8 +23,8 @@ export const StockPerformance = ({ data }) => (
             tickSize: 5,
             tickPadding: 5,
             tickRotation: 0,
-            legend: 'Balance',
-            legendOffset: -40,
+            legend: '',
+            legendOffset: -50,
             legendPosition: 'middle'
         }}
         colors={{ scheme: 'dark2' }}

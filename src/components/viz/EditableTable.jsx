@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
 import './EditableTable.css';
-import { Table, Input, Button, Popconfirm, Form } from 'antd';
+import { Table, Input, Button, Popconfirm, Form, Radio } from 'antd';
 
 const EditableContext = React.createContext();
 
@@ -96,8 +96,20 @@ export default class EditableTable extends React.Component {
       {
         title: 'Date',
         dataIndex: 'date',
-        width: '30%',
+        width: '15%',
         editable: true,
+      },
+      {
+        title: 'Type',
+        dataIndex: 'type',
+        width: '35%',
+        render: (text, record) => (
+          <Radio.Group name="type" defaultValue={text}>
+            <Radio value='Deposit'>Deposit</Radio>
+            <Radio value='Profit'>Profit</Radio>
+            <Radio value='Withdrawal'>Withdrawal</Radio>
+          </Radio.Group>
+        ),
       },
       {
         title: 'Change',
@@ -112,11 +124,6 @@ export default class EditableTable extends React.Component {
       {
         title: 'Net Profit',
         dataIndex: 'net-profit',
-        editable: true,
-      },
-      {
-        title: 'Type',
-        dataIndex: 'type',
         editable: true,
       },
 //      {
