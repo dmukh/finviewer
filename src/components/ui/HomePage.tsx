@@ -9,7 +9,7 @@ import 'antd/dist/antd.css';
 
 import Account from './Account';
 import NewAccount from './NewAccount';
-import Combined from './Combined';
+import Overview from './Overview';
 
 interface HomeProps {
   workspace: any[];
@@ -94,7 +94,7 @@ export class HomePage extends React.Component<HomeProps, HomeState> {
     let routes = [
       <Route
         exact path='/'
-        render={(props) => <Combined {...props} data={data} />}
+        render={(props) => <Overview {...props} data={data} />}
       />
     ];
 
@@ -102,7 +102,7 @@ export class HomePage extends React.Component<HomeProps, HomeState> {
       routes.push(
         <Route
           path={ this.props.workspace[i]['link'] }
-          render={(props) => <Account {...props} data={data[i+1]} />}
+          render={(props) => <Account {...props} data={data[i]} />}
         />
       );
     };
@@ -125,7 +125,7 @@ export class HomePage extends React.Component<HomeProps, HomeState> {
           { this.getSiderMenu() }
           <Layout>
            <Content style={{ margin: '0 16px' }}>
-              { this.state.firstRender ? <Combined data={data} />  : null }
+              { this.state.firstRender ? <Overview data={data} />  : null }
               { this.getRoutes(data) }
             </Content>
           </Layout>

@@ -116,12 +116,10 @@ const tableColumns = [
   {
     title: 'Profit/Loss',
     dataIndex: 'change',
-    editable: false,
   },
   {
     title: 'Net Profit',
     dataIndex: 'net-profit',
-    editable: false,
   },
 //  {
 //    title: 'Delete',

@@ -3,11 +3,11 @@ import * as React from 'react';
 import { Button, Modal, Radio } from 'antd';
 import 'antd/dist/antd.css';
 
-import { BalanceData, ProfitData, PercentData } from './AccountData';
+import { BalanceList, ProfitList, PercentList } from './AccountData';
 import Line from '../viz/Line';
 
 interface CombinedProps {
-  data: object;
+  data: any[];
 }
 
 interface CombinedState {
@@ -18,23 +18,51 @@ export default class Combined extends React.Component<CombinedProps, CombinedSta
   constructor(props) {
     super(props);
     this.state = {
-      lineData: BalanceData(this.props.data[1]),
+      lineData: this.balance(),
     };
   }
 
-  formLineData = () => {
-    let data = BalanceData(this.props.data[1]);
+  balance = () => {
+    let data = [];
+    for (let i = 0; i < this.props.data.length; ++i) {
+      data.push({
+        'id': this.props.data[i]['id'],
+        'data': BalanceList(this.props.data[i])
+      });
+    }
+    return(data);
+  }
+
+  profit = () => {
+    let data = [];
+    for (let i = 0; i < this.props.data.length; ++i) {
+      data.push({
+        'id': this.props.data[i]['id'],
+        'data': ProfitList(this.props.data[i])
+      });
+    }
+    return(data);
+  }
+
+  percent = () => {
+    let data = [];
+    for (let i = 0; i < this.props.data.length; ++i) {
+      data.push({
+        'id': this.props.data[i]['id'],
+        'data': PercentList(this.props.data[i])
+      });
+    }
     return(data);
   }
 
   handleChange = e => {
     let line = [];
     if (e.target.value === 'balance') {
-      line = BalanceData(this.props.data[1]);
+      line = this.balance();
     } else if (e.target.value === 'profit') {
-      line = ProfitData(this.props.data[1]);
+      line = this.profit();
     } else if (e.target.value === 'percent') {
-      line = PercentData(this.props.data[1]);
+      line = this.percent();
     }
     this.setState({lineData: line});
   }

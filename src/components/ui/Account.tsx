@@ -9,7 +9,7 @@ import EditableTable  from '../viz/EditableTable';
 import '../viz/EditableTable.css';
 
 interface AccountProps {
-  data: object;
+  data: any[];
 }
 
 interface AccountState {
@@ -38,11 +38,6 @@ export default class Account extends React.Component<AccountProps, AccountState>
     });
   } 
 
-  formLineData = () => {
-    let data = BalanceData(this.props.data);
-    return(data);
-  }
-
   handleChange = e => {
     let line = [];
     if (e.target.value === 'balance') {
@@ -56,7 +51,20 @@ export default class Account extends React.Component<AccountProps, AccountState>
   }
 
   formTableData = () => {
-    return this.props.data['data'];
+    let table_data = this.props.data['data'];
+    let prev_value = 0;
+    let change = 0;
+    let profit = 0;
+    for (let i = 0; i < this.props.data['data'].length; ++i) {
+      if (table_data[i]['type'] === 'Profit') {
+        profit = profit + table_data[i]['balance'] - prev_value;
+      }
+      change = table_data[i]['balance'] - prev_value;
+      prev_value = table_data[i]['balance'];
+      table_data[i]['change'] = change.toFixed(2);
+      table_data[i]['net-profit'] = profit.toFixed(2);
+    }
+    return(table_data);
   }
 
   public render() {

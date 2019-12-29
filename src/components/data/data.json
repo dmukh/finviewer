@@ -1,61 +1,45 @@
 [
   {
     "id": "spartan",
-    "color": "hsl(229, 70%, 50%)",
     "data": [
       {
-        "date": "11/2019",
+        "date": "Nov 2019",
         "balance": 10,
-        "change": 10,
-        "net-profit": 0,
         "type": "Deposit"
       },
       {
-        "date": "11/2019",
-        "balance": 138,
-        "change": 8,
-        "net-profit": 38,
+        "date": "Nov 2019",
+        "balance": 10,
         "type": "Profit"
       },
       {
-        "date": "12/2019",
-        "balance": 25438,
-        "change": 15000,
-        "net-profit": 438,
-        "type": "Deposit"
+        "date": "Dec 2019",
+        "balance": 238,
+        "type": "Profit"
       },
       {
-        "date": "12/2019",
-        "balance": 26040,
-        "change": 602,
-        "net-profit": 1040,
+        "date": "Jan 2020",
+        "balance": 240,
         "type": "Profit"
       }
     ]
   },
   {
     "id": "robinhood",
-    "color": "hsl(229, 70%, 50%)",
     "data": [
       {
-        "date": 1,
-        "balance": 180,
-        "change": 10,
-        "net-profit": 1,
-        "type": "Profit"
-      },
-      {
-        "date": 2,
-        "balance": 190,
-        "change": 20,
-        "net-profit": 2,
+        "date": "Jan 2018",
+        "balance": 100,
         "type": "Deposit"
       },
       {
-        "date": 3,
+        "date": "Jan 2018",
+        "balance": 100,
+        "type": "Profit"
+      },
+      {
+        "date": "Feb 2018",
         "balance": 170,
-        "change": 20,
-        "net-profit": 2,
         "type": "Profit"
       }
     ]

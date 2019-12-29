@@ -5,11 +5,13 @@ export const StockPerformance = ({ data }) => (
     <ResponsiveLine
         data={data}
         margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
-        xScale={{ type: 'point' }}
+        xScale={{ type: 'time', format:'%b %Y', precision: 'day', useUTC: false }}
+        xFormat="time:%b %Y"
         yScale={{ type: 'linear', min: 'auto', max: 'auto', stacked: false, reverse: false }}
         axisTop={null}
         axisRight={null}
         axisBottom={{
+            format: '%b %Y',
             orient: 'bottom',
             tickSize: 5,
             tickPadding: 5,
