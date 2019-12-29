@@ -3,6 +3,7 @@ import * as React from 'react';
 import { Button, Modal, Radio } from 'antd';
 import 'antd/dist/antd.css';
 
+import { BalanceData, ProfitData, PercentData } from './AccountData';
 import Line from '../viz/Line';
 import EditableTable  from '../viz/EditableTable';
 import '../viz/EditableTable.css';
@@ -20,7 +21,7 @@ export default class Account extends React.Component<AccountProps, AccountState>
   constructor(props) {
     super(props);
     this.state = {
-      lineData: this.formLineData(),
+      lineData: BalanceData(this.props.data),
       tableData: this.formTableData(),
     };
   }
@@ -38,103 +39,20 @@ export default class Account extends React.Component<AccountProps, AccountState>
   } 
 
   formLineData = () => {
-    let data = this.balanceData();
+    let data = BalanceData(this.props.data);
     return(data);
-  }
-
-  balanceData = () => {
-    let profit_data = [];
-    let capital_data = [];
-    let capital_value = 0;
-    for (let i = 0; i < this.props.data['data'].length; ++i) {
-      if (this.props.data['data'][i]['type'] === 'Profit') {
-        profit_data.push({
-          'x': this.props.data['data'][i]['date'],
-          'y': this.props.data['data'][i]['balance']
-        });
-        capital_data.push({
-          'x': this.props.data['data'][i]['date'],
-          'y': capital_value
-        });
-      } else {
-        capital_value = capital_value + this.props.data['data'][i]['change'];
-        capital_data.push({
-          'x': this.props.data['data'][i]['date'],
-          'y': capital_value
-        });
-      }
-    }
-
-    let data = [
-      {
-        'id': 'balance',
-        'color': this.props.data['color'],
-        'data': profit_data
-      },
-      {
-        'id': 'capital',
-        'color': 'hsl(210, 70%, 50%)',
-        'data': capital_data
-      }
-    ];
-
-    this.setState({lineData: data});
-    return(data);
-  }
-
-  profitData = () => {
-    let line_data = [];
-    for (let i = 0; i < this.props.data['data'].length; ++i) {
-      if (this.props.data['data'][i]['type'] === 'Profit') {
-        line_data.push({
-          'x': this.props.data['data'][i]['date'],
-          'y': this.props.data['data'][i]['net-profit']
-        });
-      }
-    }
-
-    let data = [{
-      'id': this.props.data['id'],
-      'color': this.props.data['color'],
-      'data': line_data
-    }];
-
-    this.setState({lineData: data});
-  }
-
-  percentData = () => {
-    let line_data = [];
-    let capital_value = 0;
-    let percent_value = 0;
-    for (let i = 0; i < this.props.data['data'].length; ++i) {
-      if (this.props.data['data'][i]['type'] === 'Deposit') {
-        capital_value = capital_value + this.props.data['data'][i]['change'];
-      } else if (this.props.data['data'][i]['type'] === 'Profit') {
-        percent_value = 100.0*this.props.data['data'][i]['net-profit']/capital_value;
-        line_data.push({
-          'x': this.props.data['data'][i]['date'],
-          'y': percent_value
-        });
-      }
-    }
-
-    let data = [{
-      'id': this.props.data['id'],
-      'color': this.props.data['color'],
-      'data': line_data
-    }];
-
-    this.setState({lineData: data});
   }
 
   handleChange = e => {
+    let line = [];
     if (e.target.value === 'balance') {
-        this.balanceData();
+      line = BalanceData(this.props.data);
     } else if (e.target.value === 'profit') {
-        this.profitData();
+      line = ProfitData(this.props.data);
     } else if (e.target.value === 'percent') {
-        this.percentData();
+      line = PercentData(this.props.data);
     }
+    this.setState({lineData: line});
   }
 
   formTableData = () => {

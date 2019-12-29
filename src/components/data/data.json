@@ -1,32 +1,5 @@
 [
   {
-    "id": "combined",
-    "color": "hsl(229, 70%, 50%)",
-    "data": [
-      {
-        "date": 1,
-        "balance": 180,
-        "change": 10,
-        "net-profit": 1,
-        "type": "Deposit"
-      },
-      {
-        "date": 2,
-        "balance": 190,
-        "change": 20,
-        "net-profit": 2,
-        "type": "Profit"
-      },
-      {
-        "date": 3,
-        "balance": 170,
-        "change": 20,
-        "net-profit": 2,
-        "type": "Profit"
-      }
-    ]
-  },
-  {
     "id": "spartan",
     "color": "hsl(229, 70%, 50%)",
     "data": [

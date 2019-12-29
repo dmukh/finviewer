@@ -89,59 +89,58 @@ class EditableCell extends React.Component {
   }
 }
 
+const tableColumns = [
+  {
+    title: 'Date',
+    dataIndex: 'date',
+    width: '15%',
+    editable: true,
+  },
+  {
+    title: 'Type',
+    dataIndex: 'type',
+    width: '35%',
+    render: (text, record) => (
+      <Radio.Group name="type" defaultValue={text}>
+        <Radio value='Deposit'>Deposit</Radio>
+        <Radio value='Profit'>Profit</Radio>
+        <Radio value='Withdrawal'>Withdrawal</Radio>
+      </Radio.Group>
+    ),
+  },
+  {
+    title: 'Balance',
+    dataIndex: 'balance',
+    editable: true,
+  },
+  {
+    title: 'Profit/Loss',
+    dataIndex: 'change',
+    editable: false,
+  },
+  {
+    title: 'Net Profit',
+    dataIndex: 'net-profit',
+    editable: false,
+  },
+//  {
+//    title: 'Delete',
+//    dataIndex: 'delete',
+//    width: '7%',
+//    render: (text, record) =>
+//      this.state.dataSource.length >= 1 ? (
+//        <Popconfirm title="Sure to delete?" onConfirm={() => this.handleDelete(record.key)}>
+//          <Button type="danger">X</Button>
+//        </Popconfirm>
+//      ) : null,
+//   },
+];
+
 export default class EditableTable extends React.Component {
   constructor(props) {
     super(props);
-    this.columns = [
-      {
-        title: 'Date',
-        dataIndex: 'date',
-        width: '15%',
-        editable: true,
-      },
-      {
-        title: 'Type',
-        dataIndex: 'type',
-        width: '35%',
-        render: (text, record) => (
-          <Radio.Group name="type" defaultValue={text}>
-            <Radio value='Deposit'>Deposit</Radio>
-            <Radio value='Profit'>Profit</Radio>
-            <Radio value='Withdrawal'>Withdrawal</Radio>
-          </Radio.Group>
-        ),
-      },
-      {
-        title: 'Change',
-        dataIndex: 'change',
-        editable: true,
-      },
-      {
-        title: 'Balance',
-        dataIndex: 'balance',
-        editable: true,
-      },
-      {
-        title: 'Net Profit',
-        dataIndex: 'net-profit',
-        editable: true,
-      },
-//      {
-//        title: 'Delete',
-//        dataIndex: 'delete',
-//        width: '7%',
-//        render: (text, record) =>
-//          this.state.dataSource.length >= 1 ? (
-//            <Popconfirm title="Sure to delete?" onConfirm={() => this.handleDelete(record.key)}>
-//              <Button type="danger">X</Button>
-//            </Popconfirm>
-//          ) : null,
-//      },
-    ];
-
     this.state = {
       dataSource: this.props.dataSource,
-      count: 0,
     };
   }
 
@@ -151,16 +150,15 @@ export default class EditableTable extends React.Component {
   };
 
   handleAdd = () => {
-    const { count, dataSource } = this.state;
+    const { dataSource } = this.state;
     const newData = {
-      key: count,
+      key: dataSource.length,
       name: '',
       age: '',
       address: '',
     };
     this.setState({
       dataSource: [...dataSource, newData],
-      count: count + 1,
     });
   };
 
@@ -183,7 +181,7 @@ export default class EditableTable extends React.Component {
         cell: EditableCell,
       },
     };
-    const columns = this.columns.map(col => {
+    const columns = tableColumns.map(col => {
       if (!col.editable) {
         return col;
       }
@@ -198,9 +196,10 @@ export default class EditableTable extends React.Component {
         }),
       };
     });
+
     return (
       <div>
-        <Button onClick={this.handleAdd} type="primary" style={{ marginBottom: 16 }}>
+        <Button onClick={this.handleAdd} type="primary" style={{ marginTop: 16, marginBottom: 16 }}>
           Add a row
         </Button>
         <Table
@@ -212,10 +211,8 @@ export default class EditableTable extends React.Component {
           pagination={false}
           size="small"
         />
-
       </div>
     );
   }
 }
 
-          

@@ -9,6 +9,7 @@ import 'antd/dist/antd.css';
 
 import Account from './Account';
 import NewAccount from './NewAccount';
+import Combined from './Combined';
 
 interface HomeProps {
   workspace: any[];
@@ -44,7 +45,7 @@ export class HomePage extends React.Component<HomeProps, HomeState> {
 
   getMenuEntries = () => {
     let entries = [
-      <Menu.Item key='home' >
+      <Menu.Item key='home' onClick={this.setFirstRenderFalse}>
         <Icon type='home' />
         <span>home</span>
         <Link to='/' />
@@ -89,12 +90,11 @@ export class HomePage extends React.Component<HomeProps, HomeState> {
     );
   };
 
-  getRoutes = () => {
-    let data = require('../data/data.json');
+  getRoutes = data => {
     let routes = [
       <Route
         exact path='/'
-        render={(props) => <Account {...props} data={data[0]} />}
+        render={(props) => <Combined {...props} data={data} />}
       />
     ];
 
@@ -118,14 +118,15 @@ export class HomePage extends React.Component<HomeProps, HomeState> {
   };
 
   render() {
+    let data = require('../data/data.json');
     return (
       <Router>
         <Layout style={{ minHeight: '100vh' }}>
           { this.getSiderMenu() }
           <Layout>
-            {this.state.firstRender ? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} /> : null}
-            <Content style={{ margin: '0 16px' }}>
-              { this.getRoutes() }
+           <Content style={{ margin: '0 16px' }}>
+              { this.state.firstRender ? <Combined data={data} />  : null }
+              { this.getRoutes(data) }
             </Content>
           </Layout>
         </Layout>
