@@ -1,6 +1,7 @@
 [
   {
     "id": "spartan",
+    "type": "liquid",
     "data": [
       {
         "date": "Nov 2019",
@@ -9,12 +10,17 @@
       },
       {
         "date": "Nov 2019",
-        "balance": 10,
+        "balance": 20,
         "type": "Profit"
       },
       {
         "date": "Dec 2019",
-        "balance": 238,
+        "balance": 220,
+        "type": "Deposit"
+      },
+      {
+        "date": "Dec 2019",
+        "balance": 225,
         "type": "Profit"
       },
       {
@@ -26,19 +32,20 @@
   },
   {
     "id": "robinhood",
+    "type": "liquid",
     "data": [
       {
-        "date": "Jan 2018",
+        "date": "Dec 2019",
         "balance": 100,
         "type": "Deposit"
       },
       {
-        "date": "Jan 2018",
-        "balance": 100,
+        "date": "Dec 2019",
+        "balance": 105,
         "type": "Profit"
       },
       {
-        "date": "Feb 2018",
+        "date": "Jan 2020",
         "balance": 170,
         "type": "Profit"
       }

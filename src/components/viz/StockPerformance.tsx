@@ -15,6 +15,7 @@ export const StockPerformance = ({ data }) => (
             orient: 'bottom',
             tickSize: 5,
             tickPadding: 5,
+            tickValues: 7,
             tickRotation: 0,
             legend: 'Date',
             legendOffset: 36,
@@ -29,7 +30,8 @@ export const StockPerformance = ({ data }) => (
             legendOffset: -50,
             legendPosition: 'middle'
         }}
-        colors={{ scheme: 'dark2' }}
+        colors={{ scheme: 'category10' }}
+        enablePoints={false}
         pointSize={10}
         pointColor={{ theme: 'background' }}
         pointBorderWidth={2}
@@ -46,7 +48,7 @@ export const StockPerformance = ({ data }) => (
                 translateY: 0,
                 itemsSpacing: 0,
                 itemDirection: 'left-to-right',
-                itemWidth: 80,
+                itemWidth: 90,
                 itemHeight: 20,
                 itemOpacity: 0.75,
                 symbolSize: 12,

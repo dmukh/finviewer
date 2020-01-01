@@ -93,7 +93,7 @@ export function PercentList(data) {
         'y': percent_value.toFixed(2)
       });
       prev_value = data['data'][i]['balance'];
-    } else if (data['data'][i]['type'] === 'Deposit') {
+    } else {
       change = data['data'][i]['balance'] - prev_value;
       prev_value = data['data'][i]['balance'];
       capital_value = capital_value + change;
