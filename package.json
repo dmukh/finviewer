@@ -18,7 +18,7 @@
     "postpackage": "electron-packager ./ --out=./builds"
   },
   "dependencies": {
-    "electron": "^7.1.3",
+    "electron": "^9.4.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
   },
